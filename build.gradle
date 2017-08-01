@@ -1,11 +1,35 @@
 apply plugin: 'java'
+apply plugin: 'com.github.johnrengelman.shadow'
 
 task wrapper(type: Wrapper) {
   gradleVersion = '3.5'
 }
 
 buildscript {
-  repositories {
-    mavenCentral()
-  }
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath "com.github.jengelman.gradle.plugins:shadow:${shadowVersion}"
+    }
+}
+
+repositories {
+  mavenCentral()
+}
+
+dependencies {
+  compile "io.dropwizard:dropwizard-core:${dropwizardVersion}"
+}
+
+jar {
+    manifest {
+        attributes('Main-Class': 'com.github.shraymittal.trueskillserver.dropwizard.TrueskillServer')
+    }
+}
+
+shadowJar.dependsOn 'processResources'
+
+shadowJar {
+    mergeServiceFiles()
 }
