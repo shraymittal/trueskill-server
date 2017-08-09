@@ -1,31 +1,29 @@
 package com.github.shraymittal.trueskillserver.data;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
+import jskills.GameInfo;
+import jskills.Player;
+import jskills.Rating;
 import lombok.Getter;
 
 public class Data implements Serializable {
 
   @Getter
-  private Set<String> games;
+  private Map<String, GameInfo> games;
 
   @Getter
-  private Set<Player> players;
+  private Map<Player<String>, Map<String, Rating>> players;
 
   public Data() {
-    games = new HashSet<>();
-    players = new HashSet<>();
+    games = new HashMap<>();
+    players = new HashMap<>();
   }
 
   public void addGame(String game) {
-    games.add(game);
-  }
-
-  public void addPlayer(Player player) {
-    players.add(player);
+    games.put(game, GameInfo.getDefaultGameInfo());
   }
 
 }

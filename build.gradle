@@ -16,10 +16,12 @@ buildscript {
 
 repositories {
     mavenCentral()
+    mavenLocal()
 }
 
 dependencies {
     compile "io.dropwizard:dropwizard-core:${dropwizardVersion}"
+    compile "com.github.shraymittal:jskill:1.0"
     compile "org.apache.commons:commons-math3:${apacheMathVersion}"
     compile "org.projectlombok:lombok:${lombokVersion}"
 }

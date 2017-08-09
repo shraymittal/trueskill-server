@@ -27,10 +27,11 @@ public class TrueskillServer extends Application<TrueskillServerConfiguration> {
 
   private static Data setData() {
     try {
-      FileInputStream in = new FileInputStream("data.ser");
+      throw new Exception();
+      /*FileInputStream in = new FileInputStream("data.ser");
       BufferedInputStream buffer = new BufferedInputStream(in);
       ObjectInput oIn = new ObjectInputStream(buffer);
-      return (Data) oIn.readObject();
+      return (Data) oIn.readObject();*/
     } catch (Exception e) {
       return new Data();
     }
