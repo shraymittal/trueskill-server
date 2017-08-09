@@ -1,5 +1,6 @@
 package com.github.shraymittal.trueskillserver.dropwizard;
 
+import com.github.shraymittal.trueskillserver.calc.Rating;
 import javax.inject.Singleton;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -34,6 +35,12 @@ public class TrueskillServerResource {
   @Path("/game/view")
   public Object viewGames() {
     return TrueskillServer.getData().getGames();
+  }
+
+  @GET
+  @Path("/math/test")
+  public Object testMath() {
+    return new Rating().update(new Rating());
   }
 
 }
