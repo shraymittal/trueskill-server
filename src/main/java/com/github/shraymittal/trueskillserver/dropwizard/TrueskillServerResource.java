@@ -25,14 +25,9 @@ import jskills.TrueSkillCalculator;
 public class TrueskillServerResource {
 
   @GET
-  @Path("/game/add")
-  public Object addGame(@QueryParam("name") String name) {
-    if (name != null) {
-      TrueskillServer.getData().addGame(name);
-      TrueskillServer.writeData();
-      return TrueskillServer.getData().getGames();
-    }
-    return "Needs name parameter";
+  @Path("/game/view")
+  public Object viewGames() {
+    return TrueskillServer.getData().getGames().keySet();
   }
 
   @GET
@@ -123,15 +118,6 @@ public class TrueskillServerResource {
     }
     TrueskillServer.writeData();
     return TrueskillServer.getData().getPlayers();
-  }
-
-  @GET
-  @Path("/math/test")
-  public Object testMath() {
-    ArrayList<ITeam> list = new ArrayList<>();
-    list.add(new Team(new Player<String>("winner", 1d, 1d), new jskills.Rating(25d, 25d / 3d)));
-    list.add(new Team(new Player<String>("loser", 1d, 1d), new jskills.Rating(25d, 25d / 3d)));
-    return TrueSkillCalculator.calculateNewRatings(GameInfo.getDefaultGameInfo(), list, 1, 2);
   }
 
 }
